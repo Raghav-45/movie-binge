@@ -1,55 +1,21 @@
-import {
-  AspectRatio,
-  Box,
-  Button,
-  HStack,
-  Image,
-  Link,
-  Skeleton,
-  Stack,
-  Text,
-  useBreakpointValue,
-  useColorModeValue,
-} from '@chakra-ui/react'
 import * as React from 'react'
-// import { Rating } from './Rating'
-// import { FavouriteButton } from './FavouriteButton'
-// import { PriceTag } from './PriceTag'
+import { useState } from 'react'
+import { Button, SimpleGrid } from '@chakra-ui/react'
+import { MovieThumb } from '../Components/MovieComp'
 
-export default function Movie() {
+export default function Movie() {const [MovieList, setMovieList] = useState([])
+
+  async function getmovies(api) {
+    const response = await fetch('https://api.themoviedb.org/3/trending/all/day?api_key=b24785488c1326b9c4442d7325d37724').then(e => e.json())
+    setMovieList(response.results)
+    return response
+  }
+  getmovies()
+  
   return (
-    <Stack
-      spacing={useBreakpointValue({
-        base: '4',
-        md: '5',
-      })}
-    >
-      <Box position="relative">
-        <AspectRatio ratio={382 / 566}>
-          <Image
-            src='https://terrigen-cdn-dev.marvel.com/content/prod/1x/spider-manhomecoming_lob_crd_01_4.jpg'
-            alt='name'
-            draggable="false"
-            // fallback={<Skeleton />}
-            borderRadius={useBreakpointValue({
-              base: 'xl',
-              md: 'xl',
-            })}
-          />
-        </AspectRatio>
-      </Box>
-      <Stack>
-        <Stack spacing="1">
-          <Text fontWeight="medium" color={useColorModeValue('gray.700', 'gray.400')}>
-            Movie
-          </Text>
-        </Stack>
-        <HStack>
-          <Text fontSize="sm" color={useColorModeValue('gray.600', 'gray.400')}>
-            Description
-          </Text>
-        </HStack>
-      </Stack>
-    </Stack>
-  )
+    <SimpleGrid columns={[2, null, 3]} spacing='30px'>
+      {MovieList.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Name={elem.poster_path} />)}
+      <Button onClick={(e) => {console.log(MovieList)}}>Click</Button>
+    </SimpleGrid>
+  );
 }
