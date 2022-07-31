@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button, SimpleGrid, InputLeftAddon, Input, InputGroup } from '@chakra-ui/react'
 import { MovieThumb } from '../Components/MovieComp'
 
@@ -8,10 +8,10 @@ export default function Movie() {
   const [SearchQuery, setSearchQuery] = useState('')
   const [MovieList, setMovieList] = useState([])
 
-  async function getmovies(api='https://api.themoviedb.org/3/trending/all/day?api_key=b24785488c1326b9c4442d7325d37724') {
+  async function getmovies(api='https://api.themoviedb.org/3/movie/popular?api_key=b24785488c1326b9c4442d7325d37724&language=en-US&page=1') {
     const response = await fetch(api).then(e => e.json())
     setMovieList(response.results)
-    // console.log(response.results)
+    console.log(response.results)
     return response
   }
 
@@ -26,7 +26,12 @@ export default function Movie() {
     }
   }
   // getmovies('https://api.themoviedb.org/3/collection/86311?api_key=b24785488c1326b9c4442d7325d37724&language=en-US')
+  // getmovies()
   
+  useEffect(() => {
+    SearchMovie('')
+  }, []);
+
   return (
     <>
     <InputGroup p={3}>
@@ -35,8 +40,7 @@ export default function Movie() {
     </InputGroup>
     
     <SimpleGrid columns={[2, null, 3]} spacing='30px'>
-      {MovieList.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Name={elem.poster_path} />)}
-      <Button onClick={(e) => {console.log(MovieList)}}>Click</Button>
+      {MovieList.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Name={elem.original_title} />)}
     </SimpleGrid>
     </>
   );
