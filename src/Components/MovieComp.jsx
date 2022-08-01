@@ -1,4 +1,4 @@
-import { Box, AspectRatio, Image, useDisclosure, useMergeRefs } from '@chakra-ui/react'
+import { Box, AspectRatio, Image, useDisclosure, useMergeRefs, useColorModeValue } from '@chakra-ui/react'
 import * as React from 'react'
 
 export const MovieThumb = React.forwardRef((props, ref) => {
@@ -6,13 +6,16 @@ export const MovieThumb = React.forwardRef((props, ref) => {
   const mergeRef = useMergeRefs(inputRef, ref)
 
   const onThumbClick = (e) => {
-    console.log('Clicked Movie Poster', e.target.alt)
+    console.log('You Clicked: ', e.target.alt)
   }
 
   return (
-    <Box m={3}>
-      <AspectRatio ratio={382 / 566}>
-        <Image src={props.Poster} alt={props.Name} onClick={onThumbClick} draggable="false" borderRadius='10px' />
+    <Box m={2}>
+      <AspectRatio ratio={27 / 40}>
+        {/*<AspectRatio ratio={382 / 566}>*/}
+        <a href={'http://google.com/search?q=' + props.Title}>
+          <Image src={props.Poster} alt={props.Title} onClick={onThumbClick} draggable="false" borderRadius='12px' />
+        </a>
       </AspectRatio>
     </Box>
   )

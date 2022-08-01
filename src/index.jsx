@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import { AppProvider } from './Contexts/contextAPI'
 
 // 2. Extend the theme to include custom colors, fonts, etc
 const colors = {
@@ -19,7 +20,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
-      <App />
+      <AppProvider>
+        <App />
+      </AppProvider>
     </ChakraProvider>
   </React.StrictMode>
 );
