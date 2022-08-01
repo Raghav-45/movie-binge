@@ -34,11 +34,16 @@ export default function Movie() {
   // }, []);
 
   // // const Name = useContext(AppContext)
-  const { Movies } = useGlobalContext()
+  const { Movies, SearchResults } = useGlobalContext()
 
   return (
+    // <SimpleGrid columns={[2, 3, 9]} spacing='1px'>
+    //   {Movies.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Title={elem.original_title} />)}
+    // </SimpleGrid>
+
     <SimpleGrid columns={[2, 3, 9]} spacing='1px'>
-      {Movies.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Title={elem.original_title} />)}
+      {SearchResults.Series.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Title={elem.original_name} />)}
+      {SearchResults.Movies.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Title={elem.original_title} />)}
     </SimpleGrid>
   );
 }
