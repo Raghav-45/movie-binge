@@ -36,14 +36,24 @@ export default function Movie() {
   // // const Name = useContext(AppContext)
   const { Movies, SearchResults } = useGlobalContext()
 
+  function SortArray(a) {
+    a.sort(function(a, b){return b.popularity - a.popularity})
+    return a
+  }
+  // const ContentToshow = []
+  // Array.prototype.push.apply(ContentToshow, SearchResults.Movie)
+  // Array.prototype.push.apply(ContentToshow, SearchResults.Series)
+  // // console.log('Sorted Array by Popularity', SortArray(ContentToshow))
+  // console.log('Sorted Array by Popularity', ContentToshow)
+
   return (
     // <SimpleGrid columns={[2, 3, 9]} spacing='1px'>
     //   {Movies.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Title={elem.original_title} />)}
     // </SimpleGrid>
 
     <SimpleGrid columns={[2, 3, 9]} spacing='1px'>
-      {SearchResults.Series.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Title={elem.original_name} />)}
       {SearchResults.Movies.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Title={elem.original_title} />)}
+      {SearchResults.Series.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Title={elem.original_name} />)}
     </SimpleGrid>
   );
 }
