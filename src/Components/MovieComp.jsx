@@ -23,7 +23,7 @@ export const MovieThumb = React.forwardRef((props, ref) => {
       {/*<AspectRatio ratio={382 / 566}>*/}
         {/* <a href={'http://google.com/search?q=' + props.Title}> */}
           {/* <Image src={props.Poster} alt={props.Title} onClick={onThumbClick} draggable="false"  /> */}
-          <Box position='absolute' bgColor='#00000050' display={(ShowDetails) ? 'flex' : 'none !important' } w='100%' h='100%'><Heading as='h4' color='#FFFFFF' size='md'>{props.Title}</Heading></Box>
+          <Box position='absolute' bgColor='#00000050' display={(ShowDetails) ? 'flex' : 'none !important' } w='100%' h='100%'><Heading as='h5' color='#FFFFFF' size='sm'>{props.Title}</Heading></Box>
           {/* <iframe width="50" height="363" src="https://www.youtube.com/embed/Rf8LAYJSOL8" frameborder="0" allowfullscreen /> */}
         {/* </a> */}
       </AspectRatio>
