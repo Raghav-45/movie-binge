@@ -51,9 +51,11 @@ export default function Movie() {
     //   {Movies.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Title={elem.original_title} />)}
     // </SimpleGrid>
 
-    <SimpleGrid columns={[2, 3, 9]} spacing='1px'>
+    // <SimpleGrid columns={[2, 3, 9]} spacing='1px'>
+    <div style={{width: 'max-content', height: '100%', border: '1px solid #c3c3c3', display: 'flex', flexWrap: 'wrap'}}>
       {SearchResults.Movies.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Title={elem.original_title} />)}
-      {SearchResults.Series.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Title={elem.original_name} />)}
-    </SimpleGrid>
+      {/* {SearchResults.Series.map((elem) => <MovieThumb Poster={'https://image.tmdb.org/t/p/original' + elem.poster_path} Title={elem.original_name} />)} */}
+    </div>
+      // </SimpleGrid>
   );
 }
