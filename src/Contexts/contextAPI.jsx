@@ -14,24 +14,10 @@ const AppProvider = ({ children }) => {
   const [SearchQuery, setSearchQuery] = useState('Doctor Strange')
   const [SearchResults, setSearchResults] = useState({Movies: [], Series: [],})
 
-  // const getMovies = async (url) => {
-  //   setIsLoading(true)
-  //   try {
-  //     const resp = await fetch(url)
-  //     const data = await resp.json()
-  //     setIsLoading(false)
-  //     setMovies(data.results)
-  //     console.log(data)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
   const SearchContent = async (q) => {
     // do stuf
     const Result = {Movies: [], Series: [],}
     // const TempContent = []
-
     try {
       const resp = await fetch('https://api.themoviedb.org/3/search/movie?api_key=b24785488c1326b9c4442d7325d37724&language=en-US&query=' + q + '&page=1&include_adult=false')
       const data = await resp.json()
