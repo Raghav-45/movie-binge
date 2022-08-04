@@ -13,6 +13,7 @@ const AppProvider = ({ children }) => {
   const [isError, setIsError] = useState({ show: 'false', msg: '' })
   const [SearchQuery, setSearchQuery] = useState('Doctor Strange')
   const [SearchResults, setSearchResults] = useState({Movies: [], Series: [],})
+  const [WatchProviders, setWatchProviders] = useState({})
 
   const SearchContent = async (q) => {
     // do stuf
@@ -42,6 +43,17 @@ const AppProvider = ({ children }) => {
     console.log('Search Result: ', SearchResults)
   }
 
+  const getWatchProviders = async (id='634649') => {
+    try {
+      const resp = await fetch('https://api.themoviedb.org/3/movie/' + '634649' + '/watch/providers?api_key=b24785488c1326b9c4442d7325d37724')
+      const data = await resp.json()
+      setWatchProviders(data.results.IN.flatrate)
+      console.log('Watch Providers', WatchProviders.results.IN.flatrate)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     // let timerOut = setTimeout(() => { getMovies(`${TMDB_API_URL}&language=en-US&query=${SearchQuery}&page=1&include_adult=false`) }, 500)
     let timerOut = setTimeout(() => {SearchContent(SearchQuery)}, 500)
@@ -49,7 +61,7 @@ const AppProvider = ({ children }) => {
   }, [SearchQuery])
 
   return (
-    <AppContext.Provider value={{ IsLoading, isError, Movies, SearchResults, SearchQuery, setSearchQuery }}>
+    <AppContext.Provider value={{ IsLoading, isError, Movies, WatchProviders, SearchResults, SearchQuery, setSearchQuery }}>
       {children}
     </AppContext.Provider>
   )
