@@ -20,16 +20,15 @@ export default function Movie() {
     <Box w='100%' h='100%' overflow='hidden' transition='0.5s all' p={2}>
       <AspectRatio h='100%' overflow='hidden' bgSize='cover' bgImage={'url(https://image.tmdb.org/t/p/original' + ContentDetails.backdrop_path + ')' } borderRadius='12px' ratio={3840 / 2160}>
         <Box p='35px' position='absolute' bgColor='#00000050' display='flex' w='100%' h='100%'>
-          <section display='flex !important'>
-            <box w='250px !important' h='363px !important' display='block'>
+          <section>
+            <Box w='250px' h='363px'>
               <AspectRatio h='100%' overflow='hidden' bgSize='cover' bgImage={'url(https://image.tmdb.org/t/p/original' + ContentDetails.poster_path + ')' } borderRadius='12px' ratio={27 / 40}>
                 <Box position='absolute' w='100%' h='100%'></Box>
               </AspectRatio>
-            </box>
-
-            <div display='flex'>
+            </Box>
+            <Box display='flex'>
               <Heading as='h2' color='#FFFFFF' size='lg'>{ContentDetails.original_title}</Heading>
-            </div>
+            </Box>
           </section>
         </Box>
       </AspectRatio>
